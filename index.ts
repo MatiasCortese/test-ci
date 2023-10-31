@@ -9,6 +9,21 @@ import * as express from "express";
 const app = express();
 const PORT = 3001;
 
+// en consola declaramos una environment variable con EXPORT $FULL_NAME=Matias. De este modo la imprimimos, pero esto es engorroso, no lo podemos hacer en el servidor asi
+// console.log(process.env.FULL_NAME)
+
+console.log("Mi nombre es " + process.env.NAME);
+
+if (process.env.ENVIRONMENT == 'developement'){
+    // aca podria declarar algun nombre
+}
+
+app.get("/env", (req, res) => {
+    res.json({
+        environment: process.env.ENVIRONMENT
+    })
+});
+
 app.get("/hola", (req, res) => {
     res.json({
         message: "hola desde el server"
